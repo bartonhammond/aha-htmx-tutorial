@@ -1,0 +1,16 @@
+{
+  "name": "hypermedia",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/node": "^9.0.0",
+    "astro": "^5.1.3",
+    "pocketbase": "^0.25.0"
+  }
+}
