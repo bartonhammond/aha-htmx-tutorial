@@ -5,7 +5,7 @@ const pb = new PocketBase('http://127.0.0.1:8090');
 // globally disable auto cancellation
 pb.autoCancellation(false)
 
-export async function getContacts({ q = null }) {
+export async function getContacts({ q = null, limit, page }) {
     const options = {
 	filter: '',
     }
@@ -17,7 +17,8 @@ export async function getContacts({ q = null }) {
     let contacts = []
     
     try {
-	contacts = await pb.collection('contacts').getFullList(options)
+	let results = await pb.collection('contacts').getList(page, limit, options)
+	contacts = results.items
     } catch (e) {
 	console.log(e.response)
     }
