@@ -1,10 +1,12 @@
 ---
 import Layout from '@layouts/Layout.astro'
 import { addContact } from '@lib/pocketbase'
+import '@styles/global.css';
 
 let contact = {}
 let flash = ""
-
+let errors = {}
+  
 if (Astro.request.method === 'POST') {
   const formData = await Astro.request.formData()
   const first = formData.get('first')?.toString() || ''
@@ -12,14 +14,23 @@ if (Astro.request.method === 'POST') {
   const phone = formData.get('phone')?.toString() || ''
   const email = formData.get('email')?.toString() || ''
 
-  contact = await addContact({
-    first,
-    last,
-    phone,
-    email,
-  })
 
-  flash = "Contact created!"
+  
+  try {
+      contact = await addContact({
+          first,
+     	  last,
+	  phone,
+  	  email,
+      })
+
+      flash = "Contact created!"
+  
+  } catch (e) {
+     console.log(`New ${e}`)
+     errors = e.errors
+     contact = e.contact
+  }
 
 }
 ---
@@ -33,11 +44,11 @@ if (Astro.request.method === 'POST') {
         <input
           name='email'
           id='email'
-          type='email'
+          type='text'
           placeholder='Email'
           value={contact.email}
         />
-        <span class='error'>{contact.errors?.email}</span>
+        {errors?.email && <span class='error'>{errors?.email}</span>}
       </p>
 
       <p>
@@ -49,7 +60,7 @@ if (Astro.request.method === 'POST') {
           placeholder='First Name'
           value={contact.first}
         />
-        <span class='error'>{contact.errors?.first}</span>
+        {errors?.first && <span class='error'>{errors?.first}</span>}
       </p>
       <p>
         <label for='last'>Last Name</label>
@@ -60,7 +71,7 @@ if (Astro.request.method === 'POST') {
           placeholder='Last Name'
           value={contact.last}
         />
-        <span class='error'>{contact.errors?.last}</span>
+        {errors?.last && <span class='error'>{errors?.last}</span>}
       </p>
       <p>
         <label for='phone'>Phone</label>
@@ -71,7 +82,7 @@ if (Astro.request.method === 'POST') {
           placeholder='Phone'
           value={contact.phone}
         />
-        <span class='error'>{contact.errors?.phone}</span>
+        {errors?.phone && <span class='error'>{errors?.phone}</span>}
       </p>
       <button>Save</button>
     </fieldset>

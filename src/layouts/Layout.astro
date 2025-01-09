@@ -13,16 +13,13 @@ const { flash } = Astro.props
     <script src="https://unpkg.com/htmx.org@2.0.4" integrity="sha384-HGfztofotfshcF7+8n44JQL2oJmowVChPTg48S+jvZoztPfvwD79OC/LTtG6dMp+" crossorigin="anonymous"></script>
     <link
       rel="stylesheet"
-      href="https://the.missing.style/v0.2.0/missing.min.css"
-      />
-    <link
-      rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css"
       />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
       />
+    <script src="https://unpkg.com/validator@latest/validator.min.js"></script>
     <style>
       .flash {
 	  display: block;
@@ -38,7 +35,8 @@ const { flash } = Astro.props
     </style>
     <title>app</title>
   </head>
-  <body hx-boost="true" class="center">
+  <body hx-boost="true" class="container">
+    <h1>Contacts</h1>
     {flash && <p class="animate__animated animate__fadeOut animate__delay-3s flash" >{flash}</p>}
     <slot />
   </body>
