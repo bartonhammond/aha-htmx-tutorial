@@ -72,10 +72,15 @@ if (Astro.request.method === 'POST') {
       </p>
       <button>Save</button>
     </fieldset>
-  </form>
-  <form action={`/contacts/${contact.id}/delete`} method='post'>
-    <button>Delete Contact</button>
-  </form>
+    <!-- use hx-delete -->
+    
+  <button
+    hx-delete={`/contacts/${contact.id}/delete`}
+    hx-target='body'
+    hx-push-url='true'>Delete Contact
+  </button>
+
+
   <p>
     <a href='/contacts'>Back</a>
   </p>
