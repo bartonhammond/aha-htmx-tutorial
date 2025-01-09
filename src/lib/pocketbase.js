@@ -18,7 +18,6 @@ export async function getContacts({ q = null }) {
     
     try {
 	contacts = await pb.collection('contacts').getFullList(options)
-	console.log(contacts)
     } catch (e) {
 	console.log(e.response)
     }
@@ -53,3 +52,24 @@ export async function getContact(id) {
   return contact
 }
 
+export async function updateContact(id, data) {
+  let updatedContact
+
+  try {
+    updatedContact = await pb.collection('contacts').update(id, data)
+  } catch (e) {
+    console.log(e.response)
+  }
+
+  return updatedContact
+}
+
+export async function deleteContact(id) {
+    console.log(`deleteContact: id: ${id}`)
+  try {
+    await pb.collection('contacts').delete(id)
+  } catch (e) {
+      
+      console.log(e)
+  }
+}
