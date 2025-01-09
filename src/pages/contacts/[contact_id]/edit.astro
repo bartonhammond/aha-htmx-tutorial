@@ -2,6 +2,7 @@
 import Layout from '@layouts/Layout.astro'
 import { getContact, updateContact } from '@lib/pocketbase'
 
+let flash = ""
 const { contact_id } = Astro.params
 let contact = await getContact(contact_id)
 
@@ -18,10 +19,12 @@ if (Astro.request.method === 'POST') {
     phone,
     email,
   })
+  flash="Flash: Updated!"
 }
 ---
 
-<Layout>
+<Layout flash={flash}>
+
   <form action={`/contacts/${contact_id}/edit`} method='post'>
     <fieldset>
       <legend>Contact Values</legend>
@@ -72,13 +75,13 @@ if (Astro.request.method === 'POST') {
       </p>
       <button>Save</button>
     </fieldset>
+
     <!-- use hx-delete -->
-    
-  <button
-    hx-delete={`/contacts/${contact.id}/delete`}
-    hx-target='body'
-    hx-push-url='true'>Delete Contact
-  </button>
+    <button
+	hx-delete={`/contacts/${contact.id}/delete`}
+   	hx-target='body'
+    	hx-push-url='true'>Delete Contact
+    </button>
 
 
   <p>

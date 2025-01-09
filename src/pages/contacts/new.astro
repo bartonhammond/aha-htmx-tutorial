@@ -3,6 +3,7 @@ import Layout from '@layouts/Layout.astro'
 import { addContact } from '@lib/pocketbase'
 
 let contact = {}
+let flash = ""
 
 if (Astro.request.method === 'POST') {
   const formData = await Astro.request.formData()
@@ -18,10 +19,12 @@ if (Astro.request.method === 'POST') {
     email,
   })
 
+  flash = "Contact created!"
+
 }
 ---
 
-<Layout>
+<Layout flash={flash}>
   <form action='/contacts/new' method='post'>
     <fieldset>
       <legend>Contact Values</legend>
