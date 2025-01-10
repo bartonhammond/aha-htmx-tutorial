@@ -2,7 +2,7 @@
 import Layout from '@layouts/Layout.astro'
 import { getContacts } from '@lib/pocketbase'
 
-const q = Astro.url.searchParams.get('q')
+const q = Astro.url.searchParams.get('search')
 const page = +Astro.url.searchParams.get('page') || 1
 const limit = 10
 
@@ -12,18 +12,21 @@ const contacts = await getContacts({ q, limit, page })
 
 <Layout>
   <form action='/contacts' >
-    <label for='search'>Search Term</label>
     <input
       id='search'
       type='search'
       name='q'
       value={q}
-      hx-get='/contacts'
+      placeholder="Search Contacts"
+      hx-post=`/contacts/partials/contact-rows/?page=${page}`
       hx-trigger="input changed delay:500ms, keyup[key=='Enter'], load"
-      hx-select='tbody tr'
       hx-target="#search-results"
       hx-indicator=".htmx-indicator">
-     <img style="height: 20px" id="spinner" class="htmx-indicator" src="/static/img/spinning-circles.svg"/>
+    <img 
+      style="height: 20px" 
+      id="spinner" 
+      class="htmx-indicator" 
+      src="/static/img/spinning-circles.svg"/>
     <input type='submit' value='Search' />
   </form>
 
@@ -38,35 +41,7 @@ const contacts = await getContacts({ q, limit, page })
       </tr>
     </thead>
     <tbody id="search-results">
-      {
-        contacts?.map(contact => (
-          <tr>
-            <td>{contact.first}</td>
-            <td>{contact.last}</td>
-            <td>{contact.phone}</td>
-            <td>{contact.email}</td>
-            <td>
-              <a href={`/contacts/${contact.id}/edit`}>Edit</a>
-              <a href={`/contacts/${contact.id}`}>View</a>
-            </td>
-          </tr>
-        ))
-      }
-      {
-       contacts.length == 10 && (
-          <tr>
-            <td colspan='5' style='text-align: center'>
-              <button
-                hx-target='closest tr'
-                hx-swap='outerHTML show:bottom'
-                hx-select='tbody > tr'
-                hx-get={`/contacts?q=${q}&page=${page + 1}`}>
-                Load More
-              </button>
-            </td>
-          </tr>
-        )
-      }
+     
     </tbody>
   </table>
   <p>

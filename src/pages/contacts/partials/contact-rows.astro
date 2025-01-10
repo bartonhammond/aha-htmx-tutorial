@@ -1,0 +1,54 @@
+---
+export const partial = true
+
+import { getContacts } from "@lib/pocketbase"
+
+//Initial request
+const formData = await Astro.request.formData()
+let q = formData.get("q")?.toString()
+
+//Once the pagination starts
+if (!q) {
+    q = new URL(Astro.request.url).searchParams.get("q") || 1;
+}
+
+let page = new URL(Astro.request.url).searchParams.get("page") || 1;
+
+page = parseInt(page)
+
+console.log(`contact-rows q:${q} page: ${page}`)
+
+const limit = 10
+
+const contacts = await getContacts({ q, limit, page })
+---
+{
+    contacts?.map(contact => (
+      <tr>
+        <td>{contact.first}</td>
+        <td>{contact.last}</td>
+        <td>{contact.phone}</td>
+        <td>{contact.email}</td>
+        <td>
+          <a href={`/contacts/${contact.id}/edit`}>Edit</a>
+          &nbsp;
+          <a href={`/contacts/${contact.id}`}>View</a>
+        </td>
+      </tr>
+    ))
+  }
+  {
+   contacts.length == limit && (
+      <tr>
+        <td colspan='5' style='text-align: center'>
+          <button
+            hx-target='closest tr'
+            hx-swap='outerHTML show:bottom'
+            
+            hx-post={`/contacts/partials/contact-rows/?q=${q}&page=${page + 1}`}>
+            Load More
+          </button>
+        </td>
+      </tr>
+    )
+  }
