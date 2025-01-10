@@ -6,7 +6,10 @@ const { contact_id } = Astro.params
 // note the DELETE vs POST
 if (Astro.request.method === 'DELETE') {
   await deleteContact(contact_id)
+
+  if (Astro.request.headers.get('HX-Trigger') === 'delete-btn') {
+    return Astro.redirect(`/contacts`)
+  }
 }
 
-return Astro.redirect(`/contacts`)
 ---

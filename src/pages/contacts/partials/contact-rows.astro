@@ -1,5 +1,6 @@
 ---
 export const partial = true
+import '@styles/global.css';
 
 import { getContacts } from "@lib/pocketbase"
 
@@ -33,6 +34,13 @@ const contacts = await getContacts({ q, limit, page })
           <a href={`/contacts/${contact.id}/edit`}>Edit</a>
           &nbsp;
           <a href={`/contacts/${contact.id}`}>View</a>
+          &nbsp;
+          <a href="#" 
+            hx-confirm="Are you sure?" 
+            hx-target="closest tr" 
+            hx-swap="outerHTML swap:1s"
+            hx-delete={`/contacts/${contact.id}/delete`}
+           >Delete</a>
         </td>
       </tr>
     ))
