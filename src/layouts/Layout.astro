@@ -37,6 +37,7 @@ const { flash } = Astro.props
   </head>
   <body hx-boost="true" class="container">
     <h1>Contacts</h1>
+    <hr>
     {flash && <p class="animate__animated animate__fadeOut animate__delay-3s flash" >{flash}</p>}
     <slot />
   </body>

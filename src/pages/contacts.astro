@@ -11,7 +11,7 @@ const contacts = await getContacts({ q, limit, page })
 ---
 
 <Layout>
-  <form action='/contacts' method='get' class='tool-bar'>
+  <form action='/contacts' >
     <label for='search'>Search Term</label>
     <input
       id='search'
@@ -19,12 +19,14 @@ const contacts = await getContacts({ q, limit, page })
       name='q'
       value={q}
       hx-get='/contacts'
-      hx-trigger='search, keyup delay:200ms changed'
-      hx-target='tbody'
+      hx-trigger="input changed delay:500ms, keyup[key=='Enter'], load"
       hx-select='tbody tr'
-    />
+      hx-target="#search-results"
+      hx-indicator=".htmx-indicator">
+     <img style="height: 20px" id="spinner" class="htmx-indicator" src="/static/img/spinning-circles.svg"/>
     <input type='submit' value='Search' />
   </form>
+
   <table>
     <thead>
       <tr>
@@ -35,7 +37,7 @@ const contacts = await getContacts({ q, limit, page })
         <th></th>
       </tr>
     </thead>
-    <tbody>
+    <tbody id="search-results">
       {
         contacts?.map(contact => (
           <tr>
@@ -56,9 +58,9 @@ const contacts = await getContacts({ q, limit, page })
             <td colspan='5' style='text-align: center'>
               <button
                 hx-target='closest tr'
-                hx-swap='outerHTML'
+                hx-swap='outerHTML show:bottom'
                 hx-select='tbody > tr'
-                hx-get={`/contacts?page=${page + 1}`}>
+                hx-get={`/contacts?q=${q}&page=${page + 1}`}>
                 Load More
               </button>
             </td>
