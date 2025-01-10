@@ -84,6 +84,17 @@ export async function deleteContact(id) {
   }
 }
 
+export async function getCount() {
+  let count = 0
+  try {
+    let results = await pb.collection("contacts").getList(1, 1)
+    count = results.totalItems
+  } catch (e) {
+    console.log(e)
+  }
+  return count
+}
+
 function validateContact(contact) {
   const errors = {
     first: "",

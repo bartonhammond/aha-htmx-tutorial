@@ -46,5 +46,13 @@ const contacts = await getContacts({ q, limit, page })
   </table>
   <p>
     <a href='/contacts/new'>Add Contact</a>
+    <span 
+      hx-get="/contacts/partials/count" 
+      hx-indicator="#spinner"
+      hx-trigger="revealed">
+      <img id="spinner" 
+        class="htmx-indicator"
+        src="/static/img/spinning-circles.svg"/> 
+    </span>
   </p>
 </Layout>
