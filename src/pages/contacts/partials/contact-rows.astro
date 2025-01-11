@@ -32,6 +32,7 @@ const contacts = await getContacts({ q, limit, page })
                 id="selected_contact_ids"
                 name="selected_contact_ids"
                 value={contact.id}
+                x-on:click="($event.target.checked ? count++ : count--)"
             >
         </td>
         <td>{contact.first}</td>

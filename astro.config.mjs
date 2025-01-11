@@ -1,8 +1,8 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
 import node from '@astrojs/node'
+import alpinejs from '@astrojs/alpinejs';
 
-// https://astro.build/config
 export default defineConfig({
   output: 'server',
   adapter: node({
@@ -17,5 +17,5 @@ export default defineConfig({
       Expires: '0',
     },
   },
+  integrations: [alpinejs()],
 })
-

@@ -44,6 +44,7 @@ if (Astro.request.method === "DELETE") {
 if (Astro.request.method === "GET") {
   contacts = await getContacts({ q, limit, page })
 }
+const initialCount = 0 
 ---
 
 <Layout>
@@ -68,7 +69,7 @@ if (Astro.request.method === "GET") {
     <input type="submit" value="Search" />
   </form>
 
-  <form >
+  <form  x-data={`{ count: ${initialCount} }`} >
     <table>
       <thead>
         <tr>
@@ -84,6 +85,7 @@ if (Astro.request.method === "GET") {
     </table>
     <!-- include search so that page is reset -->
     <button
+      x-show="count > 0"
       hx-delete="/contacts/"
       hx-confirm="Are you sure you want to delete these contacts?"
       hx-target="body"
