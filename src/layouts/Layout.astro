@@ -1,7 +1,9 @@
 ---
+
+import Header from "@components/Header.astro"
 const { flash } = Astro.props
 ---
-<html lang='en'>
+<html lang='en' data-theme="light" ">
   <head>
     <meta charset='utf-8' />
     <meta http-equiv='Cache-Control' content='no-cache, no-store' />
@@ -10,18 +12,19 @@ const { flash } = Astro.props
     <link rel='icon' type='image/svg+xml' href='/favicon.svg' />
     <meta name='viewport' content='width=device-width' />
     <meta name='generator' content='{Astro.generator}' />
-    <script src="https://unpkg.com/htmx.org@2.0.4" integrity="sha384-HGfztofotfshcF7+8n44JQL2oJmowVChPTg48S+jvZoztPfvwD79OC/LTtG6dMp+" crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.8/dist/cdn.min.js"></script>
+    <script src="https://unpkg.com/htmx.org@2.0.4"></script>
     <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css"
-      />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
-      />
-    <script src="https://unpkg.com/validator@latest/validator.min.js"></script>
-    <style>
-      .flash {
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.classless.lime.min.css"/>
+  
+  <style>
+    .centerMe {
+      margin: auto;
+      width: 50%;
+      padding: 10px;
+    }
+    .flash {
 	  display: block;
 	  background-color: #2fdc2f !important;
 	  color: white;
@@ -32,13 +35,25 @@ const { flash } = Astro.props
 	  margin: 16px;
 	  width: 80%;
       }
-    </style>
-    <title>app</title>
+  </style>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+      />
+    <script src="https://unpkg.com/validator@latest/validator.min.js"></script>
+  
+    <title>Contacts</title>
   </head>
-  <body hx-boost="true" class="container">
-    <h1>Contacts</h1>
-    <hr>
-    {flash && <p class="animate__animated animate__fadeOut animate__delay-3s flash" >{flash}</p>}
-    <slot />
+  <body hx-boost="true" >
+    <Header/>
+    <div x-data="{ dark: false }"></div>
+    
+        {flash && <p class="animate__animated animate__fadeOut animate__delay-3s flash" >{flash}</p>}
+    <main >
+      <slot />
+    </main>
+    <footer >
+      <h4 class="centerMe">AstroJS HTHX Alpine Pocketbase</h4>
+    </footer>
   </body>
 </html>
