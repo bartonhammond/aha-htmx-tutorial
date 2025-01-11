@@ -1,59 +1,108 @@
 ---
-import Layout from '@layouts/Layout.astro'
-import '@styles/global.css';
+import "@styles/global.css"
+import Layout from "@layouts/Layout.astro"
+import { getContacts, deleteContact } from "@lib/pocketbase"
 
-import { getContacts } from '@lib/pocketbase'
+let contacts;
+let q = Astro.url.searchParams.get("search") || ""
+const page = +Astro.url.searchParams.get("page") || 1
 
-const q = Astro.url.searchParams.get('search')
-const page = +Astro.url.searchParams.get('page') || 1
-const limit = 10
+console.log(`/contacts q: ${q} page: ${page}`)
+const limit = 10;
 
-const contacts = await getContacts({ q, limit, page })
+//Look at the Network tab in dev-tools to see the request
+if (Astro.request.method === "DELETE") {
+  const search = Astro.url.search
 
+  //Break out the query params
+  let parts = search.split('?')
+  let keys = parts[1].split('&')
+    
+  //Split the pairs to get key and id
+  for (let pos = 0; pos < keys.length; pos++) {
+    let values = keys[pos].split("=")
+    let key = values[0]
+    let id = values[1]
+    
+    switch (key) {
+      case 'q':
+        q = id  // so that search can work
+        break
+      case 'selected_contact_ids':
+        await deleteContact(id)
+        break
+      default:
+        console.log(`/contacts key: ${key} id: ${id} `)
+    }
+    
+    
+  }
+  contacts = await getContacts({ q, limit, page })
+}
+
+
+if (Astro.request.method === "GET") {
+  contacts = await getContacts({ q, limit, page })
+}
 ---
 
 <Layout>
-  <form action='/contacts' >
+  <form action="/contacts">
     <input
-      id='search'
-      type='search'
-      name='q'
+      id="search"
+      type="search"
+      name="q"
       value={q}
       placeholder="Search Contacts"
       hx-post=`/contacts/partials/contact-rows/?page=${page}`
       hx-trigger="input changed delay:500ms, keyup[key=='Enter'], load"
       hx-target="#search-results"
-      hx-indicator=".htmx-indicator">
-    <img 
-      style="height: 20px" 
-      id="spinner" 
-      class="htmx-indicator" 
-      src="/static/img/spinning-circles.svg"/>
-    <input type='submit' value='Search' />
+      hx-indicator=".htmx-indicator"
+    />
+    <img
+      style="height: 20px"
+      id="spinner"
+      class="htmx-indicator"
+      src="/static/img/spinning-circles.svg"
+    />
+    <input type="submit" value="Search" />
   </form>
 
-  <table>
-    <thead>
-      <tr>
-        <th>First</th>
-        <th>Last</th>
-        <th>Phone</th>
-        <th>Email</th>
-        <th></th>
-      </tr>
-    </thead>
-    <tbody id="search-results">
-    </tbody>
-  </table>
-  <p>
-    <a href='/contacts/new'>Add Contact</a>
-    <span 
-      hx-get="/contacts/partials/count" 
-      hx-indicator="#spinner"
-      hx-trigger="revealed">
-      <img id="spinner" 
-        class="htmx-indicator"
-        src="/static/img/spinning-circles.svg"/> 
-    </span>
-  </p>
+  <form >
+    <table>
+      <thead>
+        <tr>
+          <th>Delete</th>
+          <th>First</th>
+          <th>Last</th>
+          <th>Phone</th>
+          <th>Email</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody id="search-results"> </tbody>
+    </table>
+    <!-- include search so that page is reset -->
+    <button
+      hx-delete="/contacts/"
+      hx-confirm="Are you sure you want to delete these contacts?"
+      hx-target="body"
+      hx-include="#search"
+    >
+      Delete Selected Contacts
+    </button>
+  </form>
+<p>
+  <a href="/contacts/new">Add Contact</a>
+  <span
+  hx-get="/contacts/partials/count"
+  hx-indicator="#spinner"
+  hx-trigger="revealed"
+  >
+  <img
+    id="spinner"
+    class="htmx-indicator"
+    src="/static/img/spinning-circles.svg"
+  />
+</p>
 </Layout>
