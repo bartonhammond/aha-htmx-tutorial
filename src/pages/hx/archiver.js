@@ -1,22 +1,25 @@
 // require modules
-import fs from "fs"
-import os from "os"
-import archiver from "archiver"
-import { getContacts } from "../../lib/pocketbase.js"
-import { mkdir } from "node:fs/promises"
-import { setTimeout } from "node:timers/promises"
-import path from 'node:path'
+import fs from "fs";
+import os from "os";
+import archiver from "archiver";
+import { getContacts } from "../../lib/pocketbase.js";
+import { mkdir } from "node:fs/promises";
+import { setTimeout } from "node:timers/promises";
+import path from "node:path";
+import uniqueFilename from "unique-filename";
 
 /**
  * ContactArchiver - saves all the Contacts from the db. Adds them to the zip
  */
 export class ContactArchiver {
-  constructor() {
-    this.output = `${os.tmpdir()}/contacts`
-    this.contacts = []
+  constructor(downloadFileName) {
+    this.output = `${os.tmpdir()}/contacts`;
+    this.zipFile = `${os.tmpdir()}/contacts/example.zip`;
+    this.downloadFileName = downloadFileName;
+    this.contacts = [];
   }
   getCountOfContacts() {
-    return this.contacts.length
+    return this.contacts.length;
   }
   async writeContactsToTempDirectory() {
     let contacts = await getContacts("", 100000, 0);
@@ -37,7 +40,7 @@ export class ContactArchiver {
   }
   prepareZip() {
     // create a file to stream archive data to.
-    const output = fs.createWriteStream(`${this.output}/example.zip`);
+    const output = fs.createWriteStream(`${this.zipFile}`);
     this.archive = archiver("zip", {
       zlib: { level: 9 }, // Sets the compression level.
     });
@@ -47,11 +50,11 @@ export class ContactArchiver {
   }
 
   zipContact(index) {
-    const fileName = this.contacts[index]
+    const fileName = this.contacts[index];
     try {
       this.archive.file(`${fileName}`, { name: `${path.basename(fileName)}` });
     } catch (e) {
-      console.log(e.message)
+      console.log(e.message);
     }
   }
 
@@ -59,4 +62,11 @@ export class ContactArchiver {
     this.archive.finalize();
   }
 
+  moveZip() {
+    console.log(`cwd: ${process.cwd()}`)
+    console.log(`ContactArchiver zipFile: ${this.zipFile} downloadFileName: ${this.downloadFileName}`)
+    fs.rename(this.zipFile, this.downloadFileName, (err) => {
+      if (err) throw err;
+    });
+  }
 }

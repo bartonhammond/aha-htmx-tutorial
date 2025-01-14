@@ -1,6 +1,9 @@
 ---
 import "@styles/global.css";
 import Layout from "@layouts/Layout.astro";
+import uniqueFilename from "unique-filename";
+//File to download
+const downloadFileName = uniqueFilename("public", "downloads");
 ---
 
 <script>
@@ -20,7 +23,7 @@ import Layout from "@layouts/Layout.astro";
 
 <style>
   progress {
-    width: "100%";    
+    width: "100%";
   }
 </style>
 
@@ -29,12 +32,17 @@ import Layout from "@layouts/Layout.astro";
   <span
     hidden
     hx-ext="sse"
-    sse-connect="/hx/archive-contacts"
+    sse-connect=`/hx/archive-contacts?downloadFileName=${downloadFileName}`
     sse-swap="message"
     sse-close="closing"></span>
 
   <h3 id="creating">The contact zip is being created</h3>
-  <h3 hidden id="complete">The zip file is available here</h3>
+
+  <span hidden id="complete">
+    <h3 >The zip file is available 
+    <a href=`${downloadFileName}.zip` target="_blank">here</a>
+    </h3>
+  </span>
 
   <div class="container">
     <div class="vertical-center"></div>
