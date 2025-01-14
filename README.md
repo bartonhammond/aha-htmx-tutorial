@@ -13,3 +13,6 @@
 * cd into `scripts`
 * `node test.js` - to confirm you can connect to PB
 * `node loadData.js` - to load Contacts
+
+### HTMX
+see [https://github.com/xstevenyung/astro-htmx](https://github.com/xstevenyung/astro-htmx)

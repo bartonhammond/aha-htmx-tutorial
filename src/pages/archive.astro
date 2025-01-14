@@ -1,0 +1,47 @@
+---
+import "@styles/global.css";
+import Layout from "@layouts/Layout.astro";
+---
+
+<script>
+  //This receives each sse message that has the value for the progress bar
+  document.body.addEventListener("htmx:sseMessage", function (e) {
+    const elem = document.getElementById("progressBar");
+    elem.setAttribute("value", e.detail.data);
+  });
+
+  //Show appropriate messages
+  document.body.addEventListener("htmx:sseClose", function (e) {
+    document.getElementById("progressBar").hidden = true;
+    document.getElementById("creating").hidden = true;
+    document.getElementById("complete").hidden = false;
+  });
+</script>
+
+<style>
+  progress {
+    width: "100%";    
+  }
+</style>
+
+<Layout>
+  <!-- This starts the SSE but displays nothing -->
+  <span
+    hidden
+    hx-ext="sse"
+    sse-connect="/hx/archive-contacts"
+    sse-swap="message"
+    sse-close="closing"></span>
+
+  <h3 id="creating">The contact zip is being created</h3>
+  <h3 hidden id="complete">The zip file is available here</h3>
+
+  <div class="container">
+    <div class="vertical-center"></div>
+    <progress id="progressBar" value="0" max="100"></progress>
+  </div>
+
+  <p>
+    <a href="/contacts">Back</a>
+  </p>
+</Layout>
