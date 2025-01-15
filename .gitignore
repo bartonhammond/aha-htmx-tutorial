@@ -20,7 +20,8 @@ pnpm-debug.log*
 # macOS-specific files
 .DS_Store
 
-
 # pocketbase
 pb/pocketbase
 pb/pb_data
+
+public/*.zip

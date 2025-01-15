@@ -1,4 +1,6 @@
 ---
+import Home from "@components/Home.astro";
+import Blogs from "@components/Blogs.astro";
 import Contacts from "@components/Contacts.astro";
 import ArchiveHTMX from "@components/ArchiveHTMX.astro";
 import ThemeIcon from "@components/ThemeIcon.astro";
@@ -8,10 +10,14 @@ import ThemeIcon from "@components/ThemeIcon.astro";
   <nav>
     <ul>
       <li>
-        <Contacts />
+        <Home />
       </li>
     </ul>
     <ul>
+      <li><Blogs /></li>
+      <li>
+        <Contacts />
+      </li>
       <li>
         <ArchiveHTMX />
       </li>
