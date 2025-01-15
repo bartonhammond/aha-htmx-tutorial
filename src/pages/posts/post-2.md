@@ -1,7 +1,7 @@
 ---
-title: 'Web 1.0 Application'
-description: 'Getting the basic site working'
-tags: ["astro", "blogging", "learning in public"]
+title: 'Getting the initial project code'
+description: 'Use GitHub to fork and then clone the project'
+tags: ["github", "fork"]
 layout: ../../layouts/Layout.astro
 ---
 
@@ -10,20 +10,17 @@ The **HSb** uses different technologies (Python, Flask, Jinja2) so we have to tr
 
 With this first commit, we will have Astro installed and Pocketbase (**PB**).  We'll use **PB** to load some data. This will confirm that **PB** is installed and setup properly.
 
-## What to do
-*  First clone the project: [https://github.com/bartonhammond/aha-htmx-tutorial](https://github.com/bartonhammond/aha-htmx-tutorial)
+## Fork, clone, and checkout specific commit
+*  First **fork** the project: [https://github.com/bartonhammond/aha-htmx-tutorial](https://github.com/bartonhammond/aha-htmx-tutorial).  Note: be sure to **uncheck** the `Copy the master branch only` so that you have all the commits
 
-*  Download **PB** and install into `/pb`  directory.  Follow the instructions here: [https://pocketbase.io/docs/](https://pocketbase.io/docs/)
+*  Then, clone the repo you just forked so that you'll have a local copy to work with
 
-*  Start **PB** by running this command in a terminal   `./scripts/start.sh`
+*  Next, we're going to checkout a specific commit so we can review the code.
 
-*  Using your browser, go to link as provided in the terminal as shown here:
+*  Click the "commits" button to view all the commits
+![https://github.com/bartonhammond/aha-htmx-tutorial/blob/master/public/img/github-project.png](https://github.com/bartonhammond/aha-htmx-tutorial/blob/master/public/img/github-project.png?raw=true)
 
-![https://github.com/bartonhammond/aha-htmx-tutorial/blob/master/public/img/terminal-pocketbase.png](https://github.com/bartonhammond/aha-htmx-tutorial/blob/master/public/img/terminal-pocketbase.png?raw=true)
+*  Scroll down the commits and click the specific hash of the "Initial Commit".
+![https://github.com/bartonhammond/aha-htmx-tutorial/blob/master/public/img/github-commit.png](https://github.com/bartonhammond/aha-htmx-tutorial/blob/master/public/img/github-commit.png?raw=true)
 
-Then enter the id/password for the super admin.  
-
-Because the directory `pb/pb_migrations` exists, the migrations are run and the database will have the table `Contacts` defined now.  But, there is no data so we'll do that next.
-
-## Adding some data
-Go through the tutorials / blogs and use the GitHub site I provided to raise issues or questions.
+Then use that hash to checkout. It should be this hash: `eff53a8537124d3fcfb3e47909485ce0a89bea48`

@@ -6,16 +6,19 @@ layout: ../../layouts/Layout.astro
 ---
 
 # Overview
-Before starting this project, I had no serious experience with any of these technologies other than
-just reading about them.  I am very interested in having a tech stack that is simple and straigt forward.  For me, this stack scratchs that itch.  
+Before starting this project, I had no serious experience with any of these technologies other than just reading about them.  I am very interested in having a tech stack that is simple and straigt forward.  For me, this stack scratchs that itch.  
 
  I had looked through the AHA Stack docs and read about it.  And I knew that Flavio had started working through the Hypermedia Systems (**HSb**) book (see [https://ahastack.dev/examples/2-contacts/](https://ahastack.dev/examples/2-contacts/)).  He didn't complete it so I thought I would.
+
+This tutorial will not so much be a "code along" but rather a `code review`.  We'll review the code that I used to.
 
 ## Assumptions
 
 I will not be providing detail instructions of how to use GitHub or install Astro, etc.  I assume these type of things are better discussed at their websites.
 
 I am doing this on a Mac.  If you are on a different machine, good luck :)
+
+I assume you have `npm` and `node` installed.
 
 ## What I'll be sharing
 
@@ -27,5 +30,3 @@ I am doing this on a Mac.  If you are on a different machine, good luck :)
 
 ## What's next
 What we're going to do is to checkout each commit that was made to this project.  That way we can review the code.
-
-Go through the tutorials / blogs and use the GitHub site I provided to raise issues or questions.
