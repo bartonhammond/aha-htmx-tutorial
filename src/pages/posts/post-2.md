@@ -6,9 +6,9 @@ layout: ../../layouts/Layout.astro
 ---
 
 # Overview
-The **HSb** uses different technologies so we have to translate the requirements to what works for AHA.
+The **HSb** uses different technologies (Python, Flask, Jinja2) so we have to translate the requirements to what works for AHA.
 
-With this first commit, we will have Astro installed and Pocketbase (**PB**).  We'll use **PB** to load some data. 
+With this first commit, we will have Astro installed and Pocketbase (**PB**).  We'll use **PB** to load some data. This will confirm that **PB** is installed and setup properly.
 
 ## What to do
 *  First clone the project: [https://github.com/bartonhammond/aha-htmx-tutorial](https://github.com/bartonhammond/aha-htmx-tutorial)
@@ -19,7 +19,11 @@ With this first commit, we will have Astro installed and Pocketbase (**PB**).  W
 
 *  Using your browser, go to link as provided in the terminal as shown here:
 
+![https://github.com/bartonhammond/aha-htmx-tutorial/blob/master/public/img/terminal-pocketbase.png](https://github.com/bartonhammond/aha-htmx-tutorial/blob/master/public/img/terminal-pocketbase.png?raw=true)
 
+Then enter the id/password for the super admin.  
 
-## What's next
+Because the directory `pb/pb_migrations` exists, the migrations are run and the database will have the table `Contacts` defined now.  But, there is no data so we'll do that next.
+
+## Adding some data
 Go through the tutorials / blogs and use the GitHub site I provided to raise issues or questions.

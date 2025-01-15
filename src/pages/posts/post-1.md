@@ -26,4 +26,6 @@ I am doing this on a Mac.  If you are on a different machine, good luck :)
 3. I'll discuss the code that was used. I'll point out what GitHub **commit** was used.
 
 ## What's next
+What we're going to do is to checkout each commit that was made to this project.  That way we can review the code.
+
 Go through the tutorials / blogs and use the GitHub site I provided to raise issues or questions.
