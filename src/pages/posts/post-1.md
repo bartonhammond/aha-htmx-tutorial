@@ -24,9 +24,11 @@ I assume you have `npm` and `node` installed.
 
 1. All the source code to the project.  I'll be using GitHub see: [https://github.com/bartonhammond/aha-htmx-tutorial]()
 
-2. I'll go through the **HSb** and create the solution in the AHA stack.
+2. We'll go through the **HSb** and create review the solution in the AHA stack.
 
-3. I'll discuss the code that was used. I'll point out what GitHub **commit** was used.
+3. We'll review the code that was created. We'll review each GitHub **commit** that was used.
 
 ## What's next
-What we're going to do is to checkout each commit that was made to this project.  That way we can review the code.
+What we're going to do is to checkout each commit that was made to this project.  That way we can review the code. 
+
+<a href="/posts/post-2">Next</a>
