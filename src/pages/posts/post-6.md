@@ -109,5 +109,4 @@ const contacts = await getContacts({ q })
 ```
 
 ## Next
-Next we'll look at how the Edit, View and New `contacts` were done in Astro
-<a href="/posts/post-7">Next</a>
+<a href="/posts/post-7">Next</a> we'll look at how the Edit, View and New `contacts` were done in Astro

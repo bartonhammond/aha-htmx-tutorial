@@ -32,5 +32,5 @@ To confirm the load worked, run `node test.js`
 We have data now in **PB**.  You can login to **PB** and view the data in `Contacts`
 
 ## Next
-Next we'll start writing `Astro` code
-<a href="/posts/post-5">Next</a>
+<a href="/posts/post-5">Next</a> we'll start writing `Astro` code
+

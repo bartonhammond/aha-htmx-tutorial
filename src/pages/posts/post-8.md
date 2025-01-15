@@ -89,4 +89,5 @@ return Astro.redirect(`/contacts`)
 ---
 ```
 
-#### Next
+## Next
+<a href="/posts/post-9">Next</a> we'll look at our first HTMX code

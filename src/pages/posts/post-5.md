@@ -43,5 +43,4 @@ You should use this link: (http://localhost:3000/)[http://localhost:3000/]. The 
 You should see `Hello Contacts` in the browser
 
 ## Next
-Next we'll implement `search` of the contacts and display a list of `contacts` in Astro.
-<a href="/posts/post-6">Next</a>
+<a href="/posts/post-6">Next</a> we'll implement `search` of the contacts and display a list of `contacts` in Astro.

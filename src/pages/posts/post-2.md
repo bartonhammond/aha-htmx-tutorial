@@ -26,5 +26,4 @@ With this first commit, we will have Astro installed and Pocketbase (**PB**).  W
 Then use that hash to checkout. It should be this hash: `eff53a8537124d3fcfb3e47909485ce0a89bea48`
 
 ## Next
-We'll next look at the inital code
-<a href="/posts/post-3">Next</a>
+<a href="/posts/post-3">Next</a> we'll look at the inital code

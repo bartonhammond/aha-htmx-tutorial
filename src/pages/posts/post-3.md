@@ -91,5 +91,4 @@ We'll use these scripts in subsequent steps.
 *  `test.js` is way to determine if we connect to **PB** and can retreive data
 
 ## Next
-Next we'll intall and setup **PB**
-<a href="/posts/post-4">Next</a>
+<a href="/posts/post-4">Next</a> we'll intall and setup **PB**

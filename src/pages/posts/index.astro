@@ -1,12 +1,21 @@
 ---
 import Layout from '@layouts/Layout.astro'
 const allPosts = Object.values(import.meta.glob('./*.md', { eager: true }));
+
+allPosts.sort((a, b) => {
+      let numA = parseInt(a.url.split('-')[1])
+      let numB = parseInt(b.url.split('-')[1])
+      if (numA < numB) return -1
+      return 1
+    })
+
 const pageTitle = "My AHA Learning Blog";
 ---
 <Layout>
   <h1>Tutorial</h1>
   <p>These are some blogs about what I learned</p>
   <ul>
+   
     {allPosts.map((post: any) => 
     <li>
       <a href={post.url}>{post.frontmatter.title}

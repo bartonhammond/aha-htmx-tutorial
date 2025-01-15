@@ -29,6 +29,6 @@ I assume you have `npm` and `node` installed.
 3. We'll review the code that was created. We'll review each GitHub **commit** that was used.
 
 ## What's next
-What we're going to do is to checkout each commit that was made to this project.  That way we can review the code. 
+<a href="/posts/post-2">Next</a> we're going to checkout each commit that was made to this project.  That way we can review the code. 
 
-<a href="/posts/post-2">Next</a>
+

@@ -134,5 +134,4 @@ const contact = await getContact(contact_id)
 ---
 ```
 ## Next
-Next we'll look at Delete and Edit of the contacts
-<a href="/posts/post-8">Next</a>
+<a href="/posts/post-8">Next</a> we'll look at Delete and Edit of the contacts
