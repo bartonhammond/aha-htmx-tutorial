@@ -1,7 +1,7 @@
 ---
 title: 'Show delete bulk button if at least 1 checkbox is checked'
-description: 'Let's show/hide the bulk delete button'
-tags: ["x-data", "x-show, "x-on:clicked"]
+description: 'Show/hide the bulk delete button'
+tags: ["x-data", "x-show", "x-on clicked"]
 layout: ../../layouts/Layout.astro
 ---
 # Overview

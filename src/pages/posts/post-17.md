@@ -1,7 +1,7 @@
 ---
 title: 'Add partials for contact rows'
-description: 'By using partials, htmx replaces element with html'
-tags: ["hx-trigger", "hx-swap", , "hx-post"]
+description: 'By using partials htmx replaces element with html'
+tags: ["hx-trigger", "hx-swap", "hx-post"]
 layout: ../../layouts/Layout.astro
 ---
 # Overview
