@@ -1,7 +1,8 @@
 import PocketBase from "pocketbase";
 import validator from "validator";
 
-const pb = new PocketBase("http://127.0.0.1:8090");
+import { POCKETBASE_URL } from 'astro:env/server';
+const pb = new PocketBase(POCKETBASE_URL)
 
 // globally disable auto cancellation
 pb.autoCancellation(false);

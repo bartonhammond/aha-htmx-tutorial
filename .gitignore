@@ -25,3 +25,5 @@ pb/pocketbase
 pb/pb_data
 
 public/*.zip
+.env.*
+

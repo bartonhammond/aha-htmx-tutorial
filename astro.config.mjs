@@ -1,21 +1,29 @@
 // @ts-check
-import { defineConfig } from 'astro/config';
-import node from '@astrojs/node'
-import alpinejs from '@astrojs/alpinejs';
+import { defineConfig, envField } from "astro/config";
+import node from "@astrojs/node";
+import alpinejs from "@astrojs/alpinejs";
 
 export default defineConfig({
-  output: 'server',
+  output: "server",
   adapter: node({
-    mode: 'standalone',
+    mode: "standalone",
   }),
   server: {
     port: 3000,
-    host: '0.0.0.0',
+    host: "0.0.0.0",
     headers: {
-      'Cache-Control': 'no-cache, no-store',
-      Pragma: 'no-cache',
-      Expires: '0',
+      "Cache-Control": "no-cache, no-store",
+      Pragma: "no-cache",
+      Expires: "0",
     },
   },
   integrations: [alpinejs()],
-})
+  env: {
+    schema: {
+      POCKETBASE_URL: envField.string({
+        context: "server",
+        access: "secret",
+      }),
+    },
+  },
+});

@@ -39,7 +39,7 @@ that the `hx-get` is using a `partial`
     hx-trigger="revealed">
     <img id="spinner" 
         class="htmx-indicator"
-        src="/static/img/spinning-circles.svg"/> 
+        src="/img/spinning-circles.svg"/> 
 </span>
 ```
 #### src/pages/contacts/partials/count.astro

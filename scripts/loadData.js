@@ -1,33 +1,52 @@
-import PocketBase from 'pocketbase';
-
-const pb = new PocketBase('http://127.0.0.1:8090');
+import PocketBase from "pocketbase";
+const pb = new PocketBase(`${process.env.POCKETBASE_URL}`);
 
 async function addContacts() {
-    let firstNames = ["Buddy", "Marilyn", "Charles", "Emily", "Neufy", "Felina", "Karen", "Erma", "Randy", "Lisa", "Joe"]
-    let lastNames = ["Hammond", "Perez", "Tank", "Smith", "Jones", "Jackson", "Irv", "Besome", "Hart", "Love"]
+  let firstNames = [
+    "Buddy",
+    "Marilyn",
+    "Charles",
+    "Emily",
+    "Neufy",
+    "Felina",
+    "Karen",
+    "Erma",
+    "Randy",
+    "Lisa",
+    "Joe",
+  ];
+  let lastNames = [
+    "Hammond",
+    "Perez",
+    "Tank",
+    "Smith",
+    "Jones",
+    "Jackson",
+    "Irv",
+    "Besome",
+    "Hart",
+    "Love",
+  ];
 
+  for (let first = 0; first < firstNames.length; first++) {
+    for (let last = 0; last < lastNames.length; last++) {
+      let _first = firstNames[first];
+      let _last = lastNames[last];
 
-    for (let first = 0; first < firstNames.length; first++) {
-	for (let last = 0; last < lastNames.length; last++) {
+      const data = {
+        first: _first,
+        last: _last,
+        email: `${_first}@${_last}.com`,
+        phone: "888-123-3343",
+      };
 
-            let _first = firstNames[first]
-            let _last = lastNames[last]
-
-	    const data = {
-		'first': _first,
-		'last': _last,
-		'email': `${_first}@${_last}.com`,
-		'phone': "888-123-3343"
-	    }
-
-
-	    try {
-		await pb.collection('contacts').create(data);
-		console.log(`added ${_first} ${_last}` )
-	    } catch (e) {
-		console.log(`${e}`)
-	    }
-	}
+      try {
+        await pb.collection("contacts").create(data);
+        console.log(`added ${_first} ${_last}`);
+      } catch (e) {
+        console.log(`${e}`);
+      }
     }
+  }
 }
-addContacts()
+addContacts();

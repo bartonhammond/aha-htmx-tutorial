@@ -25,7 +25,7 @@ Here the `hx-trigger` was updated and a `hx-indicator` with the `img` placed dir
      <img style="height: 20px" 
         id="spinner" 
         class="htmx-indicator" 
-        src="/static/img/spinning-circles.svg"/>
+        src="/img/spinning-circles.svg"/>
     <input type='submit' value='Search' />
 ```
 ## Next
