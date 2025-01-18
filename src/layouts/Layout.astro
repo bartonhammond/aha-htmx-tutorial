@@ -21,8 +21,8 @@ const { flash } = Astro.props;
     <style>
       .centerMe {
         margin: auto;
-        width: 50%;
-        padding: 10px;
+        width: 80%;
+        
       }
       .flash {
         display: block;
@@ -32,15 +32,16 @@ const { flash } = Astro.props;
         padding: 12px;
         border: 1px solid black;
         border-radius: 8px;
-        margin: 16px;
-        width: 80%;
+        width: 100%;
+      }
+      footer {
+        text-align: center;
       }
     </style>
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
     />
-    <script src="https://unpkg.com/validator@latest/validator.min.js"></script>
     <script is:inline src="../htmx-2.0.4.min.js" defer></script>
     <script is:inline src="../sse-2.2.2.js" defer></script>
     <title>Contacts</title>
@@ -48,19 +49,18 @@ const { flash } = Astro.props;
   <body hx-boost="true">
     <Header />
     <div x-data="{ dark: false }"></div>
-
-    {
-      flash && (
-        <p class="animate__animated animate__fadeOut animate__delay-3s flash">
-          {flash}
-        </p>
-      )
-    }
-    <main>
+    <main >
+      {
+        flash && (
+          <p class="animate__animated animate__fadeOut animate__delay-3s flash">
+            {flash}
+          </p>
+        )
+      }
       <slot />
     </main>
     <footer>
-      <h4 class="centerMe">AstroJS HTHX Alpine Pocketbase</h4>
+      <h4>Pocketbase Astro PicoCSS Alpine HTMX Fly Pockethost</h4>
     </footer>
   </body>
 </html>

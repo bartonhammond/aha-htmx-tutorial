@@ -1,27 +1,23 @@
-import { ContactArchiver } from "./archiver.js";
-import url from 'url'
+import url from "url"
+import  AdmZip from "adm-zip"
+import { WriteOutContacts } from "./write-out-contacts.js"
 
-export async function GET(params, request ) {
-  console.log(`/archive-contacts params.url: ${JSON.stringify(params.url)}`)
-
+function getDownloadFileName(params) {
   let urlParts = url.parse(params.url.toString())
-  console.log(`urlParts: ${JSON.stringify(urlParts.query)}`)
-
-  let downloadFileName = urlParts.query.split("=")[1]
-  console.log(`downloadFileName: ${downloadFileName}`)
-
-  //const downloadFileName = params("downloadFileName")
-  //console.log(`downloadFilName = ${downloadFileName}`)
-
+  return urlParts.query.split("=")[1]
+}
+export async function GET(params, request) {
+  console.log(`/archive-contacts params.url: ${JSON.stringify(params.url)}`)
   const encoder = new TextEncoder();
+  let downloadFileName = getDownloadFileName(params)
 
-  //The class that prepares the zip
-  const contactArchiver = new ContactArchiver(`${downloadFileName}.zip`)
-  await contactArchiver.writeContactsToTempDirectory();
-  const countOfContacts = contactArchiver.getCountOfContacts();
-  contactArchiver.prepareZip();
+  const writeOutContacts = new WriteOutContacts()
+  const contacts = await writeOutContacts.writeContactsToTempDirectory()
+  const countOfContacts = contacts.length
+  
+  const zip = new AdmZip()
 
-  // Create a streaming response
+ // Create a streaming response - SSE
   const customReadable = new ReadableStream({
     async start(controller) {
       for (let cnt = 0; cnt < countOfContacts; cnt++) {
@@ -30,23 +26,28 @@ export async function GET(params, request ) {
         //this controls the progress bar
         controller.enqueue(encoder.encode(`data: ${pct}\n\n`));
 
-        //This adds the contact to the zip
-        contactArchiver.zipContact(cnt);
+        zip.addLocalFile(contacts[cnt]);
 
         //This is to slow it down so you can see it  :)
         await new Promise((r) => setTimeout(r, 100));
-      }
+      } //for
 
-      contactArchiver.finalize()
-      contactArchiver.moveZip()
+      let distFilePath =
+        "production" === import.meta.env.MODE
+          ? `/app/dist/client/${downloadFileName}`
+          : `public/${downloadFileName}`;
+
+      try {
+        zip.writeZip(distFilePath);
+      } catch (e) {
+        console.log(`zip.writeZip path: ${distFilePath} err: ${JSON.stringify(e)}`)
+      }
 
       controller.enqueue(
         encoder.encode(`event: closing\ndata: time to stop\n\n`)
       );
-      await new Promise((r) => setTimeout(r, 2000));
 
       controller.close();
-      
     },
   });
   // Return the stream response and keep the connection alive

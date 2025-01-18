@@ -1,9 +1,9 @@
 ---
 import "@styles/global.css";
 import Layout from "@layouts/Layout.astro";
-import uniqueFilename from "unique-filename";
+
 //File to download
-const downloadFileName = uniqueFilename("public", "downloads");
+const downloadFileName = `${(new Date()).getTime()}-contacts.zip`
 ---
 
 <script>
@@ -40,7 +40,7 @@ const downloadFileName = uniqueFilename("public", "downloads");
 
   <span hidden id="complete">
     <h3 >The zip file is available 
-    <a href=`${downloadFileName}.zip` target="_blank">here</a>
+    <a href=`${downloadFileName}` target="_blank">here</a>
     </h3>
   </span>
 

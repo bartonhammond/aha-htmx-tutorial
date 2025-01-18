@@ -1,0 +1,24 @@
+# fly.toml app configuration file generated for aha-htmx-tutorial on 2025-01-16T14:50:13-06:00
+#
+# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
+#
+
+app = 'aha-htmx-tutorial'
+primary_region = 'dfw'
+
+[build]
+
+[http_service]
+  internal_port = 4321
+  force_https = true
+  auto_stop_machines = 'stop'
+  auto_start_machines = true
+  min_machines_running = 0
+  processes = ['app']
+
+[[vm]]
+  size = 'shared-cpu-1x'
+
+[mounts]
+  source = "downloads"
+  destination = "/downloads"

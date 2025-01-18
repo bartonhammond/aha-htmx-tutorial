@@ -1,13 +1,8 @@
-import PocketBase from "pocketbase";
+import pb from "./superuser.js"
 import validator from "validator";
 
-import { POCKETBASE_URL } from 'astro:env/server';
-const pb = new PocketBase(POCKETBASE_URL)
-
-// globally disable auto cancellation
-pb.autoCancellation(false);
-
 export async function getContacts({ q = null, limit, page }) {
+  console.log(`getContacts q: ${q} limit: ${limit} page: ${page}`)
   const options = {
     filter: "",
   };
@@ -22,7 +17,7 @@ export async function getContacts({ q = null, limit, page }) {
     let results = await pb.collection("contacts").getList(page, limit, options);
     contacts = results.items;
   } catch (e) {
-    console.log(e.response);
+    console.log(`getContacts error: ${JSON.stringify(e)}`);
   }
   return contacts;
 }
@@ -86,14 +81,14 @@ export async function deleteContact(id) {
 }
 
 export async function getCount() {
-  let count = 0
+  let count = 0;
   try {
-    let results = await pb.collection("contacts").getList(1, 1)
-    count = results.totalItems
+    let results = await pb.collection("contacts").getList(1, 1);
+    count = results.totalItems;
   } catch (e) {
-    console.log(e)
+    console.log(e);
   }
-  return count
+  return count;
 }
 
 function validateContact(contact) {

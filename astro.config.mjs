@@ -24,6 +24,14 @@ export default defineConfig({
         context: "server",
         access: "secret",
       }),
+	  POCKETBASE_SUPERUSER: envField.string({
+        context: "server",
+        access: "secret",
+      }),
+	  POCKETBASE_PASSWORD: envField.string({
+        context: "server",
+        access: "secret",
+      }),
     },
   },
 });
