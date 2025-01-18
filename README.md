@@ -1,8 +1,11 @@
-# Astro - HTMX - Pocketbase - Alpine tutorial
+# Dry Stack
+## Astro - HTMX - Pocketbase - Alpine - PicoCSS - Fly - Pockethost
 
 ### Install
+copy a `pocketbase` app to the `pb` directory
+import the `pb/pb_schema.json` to create the `contacts` db
+create an admin, turn off the API rules on `contacts`
 `npm i`
-
 
 ### Running
 * in one terminal `./scripts/start.sh` - this starts PB
@@ -13,9 +16,6 @@
 * cd into `scripts`
 * `node test.js` - to confirm you can connect to PB
 * `node loadData.js` - to load Contacts
-
-### HTMX
-see [https://github.com/xstevenyung/astro-htmx](https://github.com/xstevenyung/astro-htmx)
 
 ### Deployment
 ####Fly.io

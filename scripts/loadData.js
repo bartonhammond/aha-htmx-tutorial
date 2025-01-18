@@ -1,5 +1,5 @@
 import PocketBase from "pocketbase";
-const pb = new PocketBase(`${process.env.POCKETBASE_URL}`);
+import pb from "./superuser.js"
 
 async function addContacts() {
   let firstNames = [

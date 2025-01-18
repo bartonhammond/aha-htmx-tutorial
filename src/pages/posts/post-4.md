@@ -22,6 +22,12 @@ Enter a id/password for the super admin.  Just remember what you enter.
 
 Because the directory `pb/pb_migrations` exists, the migrations are run and the database will have the table `Contacts` defined now.  But, there is no data so we'll do that next.
 
+## Opening the access to the API
+The **PB** API methods are called from the **PB** JS SDK.  By default, the API methods are locked down to require a `superuser`.  For now, we want the APIs to be open. Later, when we deploy to **Fly.io** we will need to lock the APIs back down.
+
+For now, click on the `Contacts` table, then click the `gear` icon, then select the `API` tab and for each API method (List, View, Create, Update, Delete) and click the `Unlock and set custom rule`.  All you have to do is click it and leave it blank.
+
+![https://github.com/bartonhammond/aha-htmx-tutorial/blob/master/public/img/PB-API.jpg](https://github.com/bartonhammond/aha-htmx-tutorial/blob/master/public/img/PB-API.jpg?raw=true)
 Leave **PB** running.  
 
 ## Adding some data
