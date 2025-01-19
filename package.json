@@ -12,6 +12,7 @@
   "dependencies": {
     "@astrojs/alpinejs": "^0.4.1",
     "@astrojs/node": "^9.0.0",
+    "@astrojs/starlight": "^0.31.1",
     "@types/alpinejs": "^3.13.11",
     "adm-zip": "^0.5.16",
     "alpinejs": "^3.14.8",
