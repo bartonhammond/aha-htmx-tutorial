@@ -58,15 +58,10 @@ const initialCount = 0
       hx-post=`/contacts/partials/contact-rows/?page=${page}`
       hx-trigger="input changed delay:500ms, keyup[key=='Enter'], load"
       hx-target="#search-results"
-      hx-indicator=".htmx-indicator"
+      hx-indicator="#searchSpinner"
     />
-    <img
-      style="height: 20px"
-      id="spinner"
-      class="htmx-indicator"
-      src="/img/spinning-circles.svg"
-    />
-    <input type="submit" value="Search" />
+    <span id="searchSpinner" class="htmx-indicator" aria-busy="true"></span>
+        
   </form>
 
   <form  x-data={`{ count: ${initialCount} }`} >
@@ -98,13 +93,9 @@ const initialCount = 0
   <a href="/contacts/new">Add Contact</a>
   <span
   hx-get="/contacts/partials/count"
-  hx-indicator="#spinner"
+  hx-indicator=".countSpinner"
   hx-trigger="revealed"
   >
-  <img
-    id="spinner"
-    class="htmx-indicator"
-    src="/img/spinning-circles.svg"
-  />
-</p>
+  <span class="countSpinner" aria-busy="true"></span>
+  </p>
 </Layout>

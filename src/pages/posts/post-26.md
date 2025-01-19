@@ -11,12 +11,6 @@ In this step, we want to setup an account on [https://pockethost.io/](https://po
 There is a trial for 7 days.  Otherwise it's $5 / month.
 
 ### Steps
-#### Pocketbase
-First let's get the local version working properly.  We want the API rules to be enabled again.
-
-So use this image to guide you to selecting the API rules and making them to require the `superuser`.
-
-![https://github.com/bartonhammond/aha-htmx-tutorial/blob/master/public/img/PB-API.jpg](https://github.com/bartonhammond/aha-htmx-tutorial/blob/master/public/img/PB-API.jpg?raw=true)
 
 #### PocketHost.io
 Create an account and create on instance.  
@@ -46,13 +40,20 @@ POCKETBASE_PASSWORD=password12
 
 The `.env.production` should use your `pockethost.io` url, email and password.  If you prefer, create another `superuser` and use that email and password
 
+#### Pocketbase
+let's also get the local version working properly.  We want the API rules to be enabled again - 
+like they are by default.
+
+Use this image to guide you to selecting the API rules and making them to require the `superuser`.
+
+![https://github.com/bartonhammond/aha-htmx-tutorial/blob/master/public/img/PB-API.jpg](https://github.com/bartonhammond/aha-htmx-tutorial/blob/master/public/img/PB-API.jpg?raw=true)
 
 #### Test scripts
 There are two scripts that can be used to verify the db & environments are setup
 *  `scripts/test.sh` - Displays data from the server
 *  `scripts/loadData.sh` - Loads `contacts` into the db
 
-Run the scripts 
+Run the scripts as
 *  `./scripts/test.sh development` or use `./scripts/test.sh production`
 *  `.scripts/loadData.sh development` or use `./scripts/loadData.sh production`
 

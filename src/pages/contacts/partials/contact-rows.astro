@@ -61,10 +61,11 @@ const contacts = await getContacts({ q, limit, page })
           <button
             hx-target='closest tr'
             hx-swap='outerHTML show:bottom'
-            
+            hx-indicator="#loadMoreSpinner"
             hx-post={`/contacts/partials/contact-rows/?q=${q}&page=${page + 1}`}>
             Load More
-          </button>
+          </button>&nbsp;
+          <span id="loadMoreSpinner" class="htmx-indicator"  aria-busy="true"></span>
         </td>
       </tr>
     )
