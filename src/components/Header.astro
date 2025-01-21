@@ -1,9 +1,10 @@
 ---
 import Home from "@components/Home.astro";
-import Docs from "@components/Docs.astro";
+import Tutorials from "@components/Tutorials.astro";
 import Contacts from "@components/Contacts.astro";
 import ArchiveHTMX from "@components/ArchiveHTMX.astro";
 import ThemeIcon from "@components/ThemeIcon.astro";
+import Github from "./Github.astro";
 ---
 
 <header>
@@ -15,13 +16,16 @@ import ThemeIcon from "@components/ThemeIcon.astro";
     </ul>
     <ul>
       <li>
+        <Tutorials />
+      </li>
+      <li>
         <Contacts />
       </li>
       <li>
-        <Docs/>
+        <ArchiveHTMX />
       </li>
       <li>
-        <ArchiveHTMX />
+        <Github />
       </li>
       <li>
         <ThemeIcon />

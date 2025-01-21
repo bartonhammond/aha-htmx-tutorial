@@ -1,24 +1,28 @@
-# Dry Stack
-## Astro - HTMX - Pocketbase - Alpine - PicoCSS - Fly - Pockethost
+# AHA Example
+## Astro - HTMX - Alpine- Pocketbase - PicoCSS - Fly
 
 ### Install
-copy a `pocketbase` app to the `pb` directory
-import the `pb/pb_schema.json` to create the `contacts` db
-create an admin, turn off the API rules on `contacts`
-`npm i`
+#### Pocketbase
+* copy a `pocketbase` app to the `pb` directory
+* run `./scripts/start.sh` to start `pocketbase`
+* import the `pb/pb_schema.json` to create the `contacts` db
+* create an admin, turn off the API rules on `contacts`
+#### Astro
+*  `npm i`
 
 ### Running
 * in one terminal `./scripts/start.sh` - this starts PB
 * in another terminal `npm run dev` - this starts Astro
 
-### Setup
-* log into PB admin and Import `scripts/pb_schema.json` - this defines the Collections
+### Loading data
 * cd into `scripts`
-* `node test.js` - to confirm you can connect to PB
-* `node loadData.js` - to load Contacts
+* `node loadData.js development | production` - to load Contacts
+* `node test.js development | production` - to confirm db
 
-### Deployment
-####Fly.io
+
+### Deployment 
+Both Astro and Pocketbase are deployed to Fly.io
+#### Astro
 see Dockerfile and fly.toml
 Note that this app requires 3 secrets that locally are in the `.env.development`.
 To deploy to Fly.io you don't want those secrets in the Dockerfile
@@ -31,7 +35,7 @@ fly secrets set POCKETBASE_SUPERUSER=some email
 fly secrets set POCKETBASE_PASSWORD=some password
 ```
 
-##### Dockerfile
+Next, you need to have disk space to write the `archive zip` file
 
 Add 2 volumes : [https://fly.io/docs/launch/volume-storage/](https://fly.io/docs/launch/volume-storage/)
 *  `fly volumes create downloads -r dfw`
@@ -44,7 +48,7 @@ vol_vpzmddnqn7xg5824	created	downloads	1GB 	dfw   	edff	true     	d891443c242e18
 vol_v3yeq0qkqzk3gdm4	created	downloads	1GB 	dfw   	8f05	true     	1857057c63de08	8 minutes ago 
 ```
 
-
-##### pockethost.io
-I used the options of `admin sync` so that deployments would still work.  For access, I created a 2nd super user and setup the
-`fly secrets` using that.
+##### Pocketbase
+See the complete instructions here: [https://github.com/pocketbase/pocketbase/discussions/537](https://github.com/pocketbase/pocketbase/discussions/537)
+see the `Dockerfile` and `fly.yml` in the `pb` directory
+Note that Pocketbase needs the volume storage as shown above

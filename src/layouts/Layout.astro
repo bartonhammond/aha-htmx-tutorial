@@ -3,7 +3,7 @@ import Header from "@components/Header.astro";
 const { flash } = Astro.props;
 ---
 
-<html lang="en" data-theme="light" ">
+<html lang="en" data-theme="dark" ">
   <head>
     <meta charset="utf-8" />
     <meta http-equiv="Cache-Control" content="no-cache, no-store" />
@@ -15,7 +15,7 @@ const { flash } = Astro.props;
 
     <link
       rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.classless.lime.min.css"
+      href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.lime.min.css"
     />
 
     <style>
@@ -41,10 +41,10 @@ const { flash } = Astro.props;
     <script is:inline src="../sse-2.2.2.js" defer></script>
     <title>Contacts</title>
   </head>
-  <body hx-boost="true">
+  <body class="container" hx-boost="true">
     <Header />
-    <div x-data="{ dark: false }"></div>
-    <main >
+    <div x-data="{ dark: true }"></div>
+    <main>
       {
         flash && (
           <p class="animate__animated animate__fadeOut animate__delay-3s flash">
@@ -55,7 +55,7 @@ const { flash } = Astro.props;
       <slot />
     </main>
     <footer>
-      <h4>Pocketbase Astro PicoCSS Alpine HTMX Fly </h4>
+      <h4>Astro HTMX Alpine Pocketbase PicoCSS Fly</h4>
     </footer>
   </body>
 </html>
