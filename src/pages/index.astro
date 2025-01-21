@@ -1,49 +1,136 @@
 ---
-import "@styles/global.css"
-import Layout from "@layouts/Layout.astro"
+import "@styles/global.css";
+import Layout from "@layouts/Layout.astro";
+import { Image } from "astro:assets";
+import hypermediaImage from "../assets/hypermedia.png";
+import astroImage from "../assets/astro.jpeg";
+import htmxImage from "../assets/htmx.png";
+import alpineImage from "../assets/alpine.jpeg";
+import pocketbaseImage from "../assets/pb.jpeg";
+import flyImage from "../assets/fly.png";
+import picoImage from "../assets/pico.png";
 ---
-<Layout>
-    <p>Dry stack stone is a system of arranging stones that do not 
-      require cement or material to join the stones together</p>
-    <p>Likewise, this app arranges great technologies without complexity, 
-        inspired by <a href="https://ahastack.dev">AHA Stack</a>    
-    </p>
-    <p>The <a href="/posts/">Tutorials</a> describe how HTMX was implemened following this guide:
-        <a href="https://hypermedia.systems/book/contents/">Hypermedia Systems</a> and 
-        how all these technologies were used to build and deploy this application.</p>
 
-    <table>
-        <thead>
-          <tr>
-            <th scope="col">Technology</th>
-            <th scope="col">Description</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <th scope="row"><a href="https://pocketbase.io/">Pocketbase</a></th>
-            <td>Open source backend</td>
-          </tr>
-          <tr>
-            <th scope="row"><a href="https://astro.build/">Astro</a></th>
-            <td>The web framework for content-driven websites</td>
-          </tr>
-          <tr>
-            <th scope="row"><a href="https://picocss.com/">PicoCSS</a></th>
-            <td>Minimal CSS Framework for Semantic HTML</td>
-          </tr>
-          <tr>
-            <th scope="row"><a href="https://alpinejs.dev/">Alpine</a></th>
-            <td>Your new, lightweight, JavaScript framework.</td>
-          </tr>
-          <tr>
-            <th scope="row"><a href="https://htmx.org/">HTMX</a></th>
-            <td>High power tools for HTMLX</td>
-          </tr>
-          <tr>
-            <th scope="row"><a href="https://fly.io">Fly</a></th>
-            <td>A Public Cloud Built For Developers Who Ship</td>
-          </tr>
-        </tbody>
-      </table>
+<Layout>
+  <h3>AHA Stack</h3>
+  <em
+    >Perfect for frontend developers that know React / JSX and want a similar
+    DX, but also want much more simplicity in their life by generating HTML on
+    the server and writing as little client-side JavaScript as possible.
+  </em>
+  <br /><br />
+  <h4>Tutorials</h4>
+  <p>
+    Included are <a href="/posts/">28 Short Tutorials</a> that describe how HTMX
+    was implemened following this guide:
+    <a href="https://hypermedia.systems/book/contents/">Hypermedia Systems</a>
+    and how all these technologies were used and how to deploy this application to
+    Fly.io
+  </p>
+
+  <p style="color:red">
+    Please note: these tutorials were written as the code was developed but when
+    deployment was done, there were numerous changes required. So look at the
+    final code to see how things turned out.
+  </p>
+
+  <section>
+    <div class="container">
+      <div class="grid">
+        <article class="container">
+          <h4>AstroJS</h4>
+          <Image src={astroImage} height="350" height="350" alt="astrojs" />
+          <br />
+          <br />
+          <p>
+            Astro is the web framework for building content-driven websites like
+            blogs, marketing, and e-commerce. Astro is best-known for pioneering
+            a new frontend architecture to reduce JavaScript overhead and
+            complexity compared to other frameworks.
+          </p>
+          <br />
+          <p>
+            <a href="https://astro.build/"><em>Astro</em></a>
+          </p>
+        </article>
+        <article class="container">
+          <h4>HTMX</h4>
+          <Image src={htmxImage} height="350" height="350" alt="htmx" />
+          <br />
+          <br />
+          <p>
+            htmx gives you access to AJAX, CSS Transitions, WebSockets and
+            Server Sent Events directly in HTML, using attributes, so you can
+            build modern user interfaces with the simplicity and power of
+            hypertext
+          </p>
+          <br />
+          <p>
+            <a href="https://htmx.org/"><em>HTMX</em></a>
+          </p>
+        </article>
+        <article class="container">
+          <h4>AlpineJS</h4>
+          <Image src={alpineImage} height="350" height="350" alt="alpine" />
+          <br />
+          <br />
+          <p>
+            Alpine is a rugged, minimal tool for composing behavior directly in
+            your markup. Think of it like jQuery for the modern web. Plop in a
+            script tag and get going. Alpine is a collection of 15 attributes, 6
+            properties, and 2 methods.
+          </p>
+          <p>
+            <a href="https://alpinejs.dev/"><em>AlpineJS</em></a>
+          </p>
+        </article>
+      </div>
+      <div class="grid">
+        <article class="container">
+          <h4>Pocketbase</h4>
+          <Image
+            src={pocketbaseImage}
+            height="350"
+            height="350"
+            alt="pocketbase"
+          />
+          <br /><br />
+          <p>
+            PocketBase is an open source backend consisting of embedded database
+            (SQLite) with realtime subscriptions, built-in auth management,
+            convenient dashboard UI and simple REST-ish API.
+          </p>
+          <p>
+            <a href="https://pocketbase.io/"><em>Pocketbase</em></a>
+          </p>
+        </article>
+        <article class="container">
+          <h4>PicoCSS</h4>
+          <Image src={picoImage} height="350" height="350" alt="picoCss" />
+          <br /><br />
+          <p>
+            A minimalist and lightweight starter kit that prioritizes semantic
+            syntax, making every HTML element responsive and elegant by default.
+          </p>
+          <p>
+            <a href="https://picocss.com/"><em>PicoCSS</em></a>
+          </p>
+        </article>
+        <article class="container">
+          <h4>Fly.io</h4>
+          <Image src={flyImage} height="350" height="350" alt="alpine" />
+          <br /><br />
+          <p>
+            Over 3 million apps have launched on Fly.io, leveraging global
+            Anycast load-balancing, zero-config private networking, hardware
+            isolation, and instant WireGuard VPN connections, with push-button
+            deployments scaling to thousands of instances.
+          </p>
+          <p>
+            <a href="https://fly.io/"><em>Fly.io</em></a>
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
 </Layout>
